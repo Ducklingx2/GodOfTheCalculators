@@ -66,34 +66,6 @@ buttons.forEach(button => {
 
 });
 
-// -------------------------
-// Keyboard Support
-// -------------------------
-
-document.addEventListener("keydown", e => {
-
-    if ("0123456789+-*/().%^".includes(e.key)) {
-        e.preventDefault();
-        append(e.key);
-    }
-
-    if (e.key === "Enter") {
-        e.preventDefault();
-        calculate();
-    }
-
-    if (e.key === "Backspace") {
-        e.preventDefault();
-        backspace();
-    }
-
-    if (e.key === "Escape") {
-        e.preventDefault();
-        clearDisplay();
-    }
-
-});
-
 // =========================
 // Basic Operations
 // =========================
