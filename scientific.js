@@ -1,8 +1,18 @@
+// =========================
+// Scientific Math Functions
+// =========================
+
+
 // Constants
+
 const PI = Math.PI;
 const E = Math.E;
 
+
+// =========================
 // Trigonometry (Degrees)
+// =========================
+
 function sin(x) {
     return Math.sin(x * PI / 180);
 }
@@ -15,7 +25,9 @@ function tan(x) {
     return Math.tan(x * PI / 180);
 }
 
+
 // Inverse Trigonometry
+
 function asin(x) {
     return Math.asin(x) * 180 / PI;
 }
@@ -28,7 +40,11 @@ function atan(x) {
     return Math.atan(x) * 180 / PI;
 }
 
-// Hyperbolic
+
+// =========================
+// Hyperbolic Functions
+// =========================
+
 function sinh(x) {
     return Math.sinh(x);
 }
@@ -41,7 +57,28 @@ function tanh(x) {
     return Math.tanh(x);
 }
 
+
+// =========================
+// Roots
+// =========================
+
+function sqrt(x) {
+    return Math.sqrt(x);
+}
+
+function cubeRoot(x) {
+    return Math.cbrt(x);
+}
+
+function nthRoot(x, n) {
+    return x ** (1 / n);
+}
+
+
+// =========================
 // Powers
+// =========================
+
 function square(x) {
     return x ** 2;
 }
@@ -50,54 +87,50 @@ function cube(x) {
     return x ** 3;
 }
 
-function power(x, y) {
+function exponent(x, y) {
     return x ** y;
 }
 
-// Roots
-function sqrt(x) {
-    return Math.sqrt(x);
-}
 
-function cbrt(x) {
-    return Math.cbrt(x);
-}
-
+// =========================
 // Logarithms
+// =========================
+
 function ln(x) {
     return Math.log(x);
 }
 
-function log(x) {
+function log10(x) {
     return Math.log10(x);
 }
 
-// Exponentials
+function logBase(x, base) {
+    return Math.log(x) / Math.log(base);
+}
+
+
+// =========================
+// Exponential
+// =========================
+
 function exp(x) {
     return Math.exp(x);
 }
 
-// Misc
-function abs(x) {
-    return Math.abs(x);
+function tenPower(x) {
+    return 10 ** x;
 }
 
-function ceil(x) {
-    return Math.ceil(x);
-}
 
-function floor(x) {
-    return Math.floor(x);
-}
+// =========================
+// Factorials
+// =========================
 
-function round(x) {
-    return Math.round(x);
-}
-
-// Factorial
 function factorial(n) {
-    if (n < 0) return NaN;
-    if (!Number.isInteger(n)) return NaN;
+
+    if (n < 0 || !Number.isInteger(n)) {
+        throw new Error("Invalid factorial");
+    }
 
     let result = 1;
 
@@ -108,21 +141,78 @@ function factorial(n) {
     return result;
 }
 
-// Combinations
-function nCr(n, r) {
-    return factorial(n) / (factorial(r) * factorial(n - r));
-}
 
-// Permutations
-function nPr(n, r) {
+// =========================
+// Combinations & Permutations
+// =========================
+
+function permutation(n, r) {
     return factorial(n) / factorial(n - r);
 }
 
-// Angle Conversion
-function degrees(rad) {
-    return rad * 180 / PI;
+
+function combination(n, r) {
+    return factorial(n) /
+        (factorial(r) * factorial(n - r));
 }
 
-function radians(deg) {
-    return deg * PI / 180;
+
+// =========================
+// Absolute / Rounding
+// =========================
+
+function abs(x) {
+    return Math.abs(x);
+}
+
+
+function floor(x) {
+    return Math.floor(x);
+}
+
+
+function ceil(x) {
+    return Math.ceil(x);
+}
+
+
+function round(x) {
+    return Math.round(x);
+}
+
+
+// =========================
+// Angle Conversion
+// =========================
+
+function radians(degrees) {
+    return degrees * PI / 180;
+}
+
+
+function degrees(radians) {
+    return radians * 180 / PI;
+}
+
+
+// =========================
+// Scientific Notation
+// =========================
+
+function scientificNotation(x) {
+    return x.toExponential();
+}
+
+
+// =========================
+// Random
+// =========================
+
+function random() {
+    return Math.random();
+}
+
+
+function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
 }
