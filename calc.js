@@ -35,8 +35,10 @@ function calculate() {
             .replace(/−/g, "-")
             .replace(/\^/g, "**");
 
-        display.value = Function(`"use strict"; return (${expression})`)();
+        let result = Function(`"use strict"; return (${expression})`)();
 
+display.value = Number(result.toFixed(10));
+        
     } catch {
         display.value = "Error";
     }
