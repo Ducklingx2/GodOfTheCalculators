@@ -35,6 +35,8 @@ function calculate() {
 
         let result = Function(`"use strict"; return (${expression})`)();
 
+        display.value = Number(result.toFixed(10));
+
         console.log("Expression:", expression);
         console.log("Result:", result);
         console.log("Type:", typeof result);
