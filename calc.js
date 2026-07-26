@@ -27,9 +27,7 @@ function backspace() {
 
 function calculate() {
     try {
-        let expression = display.value;
-
-        expression = expression
+        let expression = display.value
             .replace(/×/g, "*")
             .replace(/÷/g, "/")
             .replace(/−/g, "-")
@@ -37,9 +35,14 @@ function calculate() {
 
         let result = Function(`"use strict"; return (${expression})`)();
 
-display.value = Number(result.toFixed(10));
-        
-    } catch {
+        console.log("Expression:", expression);
+        console.log("Result:", result);
+        console.log("Type:", typeof result);
+
+        display.value = result;
+
+    } catch (error) {
+        console.log(error);
         display.value = "Error";
     }
 }
