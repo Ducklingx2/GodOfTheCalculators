@@ -1,97 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universal Calculator</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <div class="background"></div>
+<header>
+  <div>
+    <p class="eyebrow">THE CALCULATOR THAT REFUSES TO STOP</p>
+    <h1>Universal Calculator</h1>
+  </div>
+  <nav class="tabs" aria-label="Calculator modes">
+    <button class="tab active" data-tab="basic">Basic</button>
+    <button class="tab" data-tab="scientific">Scientific</button>
+    <button class="tab" data-tab="statistics">Statistics</button>
+    <button class="tab" data-tab="geometry">Geometry</button>
+    <button class="tab" data-tab="finance">Finance</button>
+    <button class="tab" data-tab="data">Data</button>
+    <button class="tab" data-tab="diagrams">Diagrams</button>
+  </nav>
+</header>
 
-<div class="tabs">
+<main>
+<section id="basic" class="panel tab-content active">
+  <div class="display-wrap">
+    <div class="display-label">EXPRESSION</div>
+    <input id="display" readonly placeholder="Enter expression...">
+  </div>
+  <div id="basic-buttons" class="button-grid basic-grid"></div>
+</section>
 
-    <button class="tab active" data-tab="basic">
-        Basic
-    </button>
+<section id="scientific" class="panel tab-content">
+  <div class="display-wrap">
+    <div class="display-label">SCIENTIFIC EXPRESSION</div>
+    <input id="scientific-display" readonly placeholder="Try sin(30), sqrt(81), 5! ...">
+  </div>
+  <div id="scientific-buttons" class="button-grid scientific-grid"></div>
+  <div class="hint">Angles use degrees. Use xʸ for powers and nCr / nPr for combinatorics.</div>
+</section>
 
-    <button class="tab" data-tab="scientific">
-        Scientific
-    </button>
+<section id="statistics" class="panel tab-content">
+  <h2>Statistics</h2>
+  <p class="muted">Paste numbers separated by commas, spaces, or new lines.</p>
+  <textarea id="stats-input" placeholder="12, 15, 18, 18, 21, 25"></textarea>
+  <div class="tool-actions">
+    <button class="primary" id="stats-calculate">Calculate</button>
+    <button id="stats-clear">Clear</button>
+  </div>
+  <div id="stats-results" class="results-grid"></div>
+  <div class="chart-card"><canvas id="stats-chart"></canvas></div>
+</section>
 
-    <button class="tab" data-tab="statistics">
-        Statistics
-    </button>
-
-    <button class="tab" data-tab="geometry">
-        Geometry
-    </button>
-
-    <button class="tab" data-tab="finance">
-        Finance
-    </button>
-
-</div>    
-
-<div class="calculator">
-
-    <h1>Calculator</h1>
-
-    <div class="display">
-        <input type="text" 
-               placeholder="Enter expression..." 
-               id="display" 
-               autocomplete="off"
-               readonly>
+<section id="geometry" class="panel tab-content">
+  <h2>Geometry</h2>
+  <div class="geometry-grid">
+    <div class="card">
+      <h3>Circle</h3>
+      <input id="circle-radius" type="number" step="any" placeholder="Radius">
+      <button class="primary" id="circle-calc">Calculate</button>
+      <div id="circle-result" class="result"></div>
     </div>
-
-    <div class="buttons">
-
-        <button>(</button>
-        <button>)</button>
-        <button>%</button>
-        <button class="operator">÷</button>
-
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="operator">×</button>
-
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button class="operator">−</button>
-
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button class="operator">+</button>
-
-        <button>0</button>
-        <button>.</button>
-        <button>C</button>
-        <button class="equals">=</button>
-
+    <div class="card">
+      <h3>Rectangle</h3>
+      <input id="rect-width" type="number" step="any" placeholder="Width">
+      <input id="rect-height" type="number" step="any" placeholder="Height">
+      <button class="primary" id="rect-calc">Calculate</button>
+      <div id="rect-result" class="result"></div>
     </div>
+    <div class="card">
+      <h3>Triangle</h3>
+      <input id="tri-base" type="number" step="any" placeholder="Base">
+      <input id="tri-height" type="number" step="any" placeholder="Height">
+      <button class="primary" id="tri-calc">Calculate</button>
+      <div id="tri-result" class="result"></div>
+    </div>
+    <div class="card">
+      <h3>Sphere</h3>
+      <input id="sphere-radius" type="number" step="any" placeholder="Radius">
+      <button class="primary" id="sphere-calc">Calculate</button>
+      <div id="sphere-result" class="result"></div>
+    </div>
+  </div>
+</section>
 
-</div>
+<section id="finance" class="panel tab-content">
+  <h2>Finance</h2>
+  <div class="geometry-grid">
+    <div class="card">
+      <h3>Simple Interest</h3>
+      <input id="si-principal" type="number" step="any" placeholder="Principal">
+      <input id="si-rate" type="number" step="any" placeholder="Annual rate %">
+      <input id="si-time" type="number" step="any" placeholder="Time in years">
+      <button class="primary" id="si-calc">Calculate</button>
+      <div id="si-result" class="result"></div>
+    </div>
+    <div class="card">
+      <h3>Compound Interest</h3>
+      <input id="ci-principal" type="number" step="any" placeholder="Principal">
+      <input id="ci-rate" type="number" step="any" placeholder="Annual rate %">
+      <input id="ci-time" type="number" step="any" placeholder="Time in years">
+      <input id="ci-n" type="number" step="1" placeholder="Compounds / year">
+      <button class="primary" id="ci-calc">Calculate</button>
+      <div id="ci-result" class="result"></div>
+    </div>
+    <div class="card">
+      <h3>Loan Payment</h3>
+      <input id="loan-principal" type="number" step="any" placeholder="Loan amount">
+      <input id="loan-rate" type="number" step="any" placeholder="Annual rate %">
+      <input id="loan-months" type="number" step="1" placeholder="Months">
+      <button class="primary" id="loan-calc">Calculate</button>
+      <div id="loan-result" class="result"></div>
+    </div>
+  </div>
+</section>
 
-<script src="calc.js"></script>
+<section id="data" class="panel tab-content">
+  <h2>Data Handler</h2>
+  <p class="muted">Turn raw numbers into summaries. Because apparently spreadsheets weren't intimidating enough.</p>
+  <textarea id="data-input" placeholder="42, 7, 19, 23, 23, 91"></textarea>
+  <div class="tool-actions">
+    <button class="primary" id="data-analyze">Analyze Data</button>
+    <button id="data-sort">Sort</button>
+    <button id="data-clear">Clear</button>
+  </div>
+  <pre id="data-output" class="data-output"></pre>
+</section>
+
+<section id="diagrams" class="panel tab-content">
+  <h2>Diagrams</h2>
+  <p class="muted">Simple interactive geometry diagrams.</p>
+  <div class="diagram-controls">
+    <label>Radius <input id="diagram-radius" type="range" min="10" max="180" value="90"></label>
+    <label>Width <input id="diagram-width" type="range" min="20" max="300" value="180"></label>
+    <label>Height <input id="diagram-height" type="range" min="20" max="220" value="120"></label>
+  </div>
+  <canvas id="diagram-canvas" width="700" height="420"></canvas>
+</section>
+</main>
+
+<footer>Made with JavaScript, mathematics, and questionable confidence.</footer>
+
 <script src="basic.js"></script>
 <script src="scientific.js"></script>
-
-</body>
-</html>
-
+<script src="statistics.js"></script>
+<script src="geometry.js"></script>
+<script src="finance.js"></script>
+<script src="data-handler.js"></script>
+<script src="diagrams.js"></script>
 <script src="calc.js"></script>
-<script src="basic.js"></script>
-<script src="scientific.js"></script>
-
 </body>
 </html>
