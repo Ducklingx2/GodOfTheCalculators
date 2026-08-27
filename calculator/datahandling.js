@@ -1,0 +1,1 @@
+function analyzeData(text){const a=parseNumbers(text);if(!a.length)return null;const q=quartiles(a);return{count:a.length,sum:sum(...a),mean:statsMean(a),median:q.q2,modes:statsModes(a),min:statsMin(a),max:statsMax(a),range:statsRange(a),q1:q.q1,q3:q.q3,variance:statsVariance(a),sampleVariance:statsVariance(a,true),stdDev:statsStdDev(a),sampleStdDev:statsStdDev(a,true)}}
